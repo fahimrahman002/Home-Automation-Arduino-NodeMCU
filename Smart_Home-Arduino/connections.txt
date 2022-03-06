@@ -16,3 +16,14 @@
 
 4. Matrix Keypad:
 	D2-D9 - pin 1-8
+
+5. Servo motor:
+	5V - VCC(Red wire) 
+	A1 - SIG(yellow/orange) 
+	GND - GND(Black/Brown) 
+
+6. LEDs
+	D11 - RED_LED
+	D10 - GREEN_LED 
+
+

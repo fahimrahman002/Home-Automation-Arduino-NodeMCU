@@ -6,12 +6,10 @@ void gasSensor(){
   Serial.println(analogSensor);
   if (analogSensor > sensorThreshold)
   {
-    redLedOn();
     alarmOn();
   }
   else
   {
-    redLedOff();
     alarmOff();
   }
 }

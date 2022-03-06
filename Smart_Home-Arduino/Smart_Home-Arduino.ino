@@ -17,9 +17,16 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 //matrix keypad
 #include <Keypad.h>
 
-//led_lights
-RED_LED = 11;
-GREEN_LED = 10;
+//Servo motor
+#include <Servo.h>
+Servo servo;
+#define doorCloseAngle 40
+#define doorOpenAngle 190
+int servoPin = A1;
+
+//LED lights
+#define RED_LED 11
+#define GREEN_LED 10
 
 void setup()
 {
@@ -27,6 +34,11 @@ void setup()
   // lights init
   pinMode( RED_LED, OUTPUT);
   pinMode( GREEN_LED, OUTPUT);
+  
+  //Servo init
+  servo.attach(servoPin);
+  doorClose();
+
   //MQ or gas sensor  init
   pinMode(gasA0, INPUT);
 
@@ -50,5 +62,6 @@ void loop()
   //  float t = getTempC();
   //  float f = getTempF();
 
-  matrixKeypad();
+  //  matrixKeypad();
+
 }
