@@ -1,0 +1,18 @@
+1. I2C Module+LCD:
+	A4 - SDA
+	A5 - SCL
+	5V - Vcc
+	GND - GND
+
+2. DHT:
+	A3 - DATA
+	5V - Vcc
+	GND - GND
+
+3. MQ Sensor:
+	A2 - AO
+	5V - Vcc
+	GND - GND
+
+4. Matrix Keypad:
+	D2-D9 - pin 1-8
