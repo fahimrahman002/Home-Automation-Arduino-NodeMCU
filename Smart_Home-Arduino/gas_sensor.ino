@@ -1,15 +1,15 @@
 
-void gasSensor(){
+bool gasSensor(){
   int analogSensor = analogRead(gasA0);
 
   Serial.print("Pin A0: ");
   Serial.println(analogSensor);
   if (analogSensor > sensorThreshold)
   {
-    alarmOn();
+    return true;
   }
   else
   {
-    alarmOff();
+    return false;
   }
 }

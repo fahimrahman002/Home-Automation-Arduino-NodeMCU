@@ -26,4 +26,7 @@
 	D11 - RED_LED
 	D10 - GREEN_LED 
 
+7. Buzzer
+	D13 - VCC
+	GND - GN
 

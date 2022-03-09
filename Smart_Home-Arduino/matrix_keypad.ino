@@ -1,5 +1,6 @@
 const byte ROWS = 4;
 const byte COLS = 4;
+
 char keys[ROWS][COLS] = {
   {'1', '2', '3', 'A'},
   {'4', '5', '6', 'B'},
@@ -17,38 +18,48 @@ void clearPassword() {
   keyPressCount = 0;
 }
 
-void openDoor() {
+void checkPassword() {
   if (keyPressCount == 4) {
-    bool flag = false;
     for (int i = 0; i < 4; i++) {
       if (passwordInput[i] != password[i]) {
-        Serial.println("Not matched");
+        lcdPrint("Passowrd Input:","Wrong password");
+        Serial.println("Wrong password");
+        alarmOn();
         keyPressCount = 0;
         return;
       }
     }
-
-    Serial.println("Door opening");
+    doorOpen();
+    passInputDetect = false;
     keyPressCount = 0;
-
-
   } else {
-    Serial.println(keyPressCount);
-    Serial.println("You have to put 4 digit password");
+    //    Serial.println(keyPressCount);
+    //    Serial.println();
+    lcdPrint("Passowrd Input:","Put 4 digit pass");
   }
 }
 
 void storePassword(char key) {
   passwordInput[keyPressCount] = key;
   keyPressCount++;
-  if(keyPressCount==5)keyPressCount=0;
+  if (keyPressCount == 5)keyPressCount = 0;
+}
+void showPassword() {
+  lcd.clear();
+  String password = "";
+  for (int i = 0; i < keyPressCount; i++) {
+    password = password + passwordInput[i];
+  }
+  lcdPrint("Password Input:",password);
 }
 void matrixKeypad() {
   char key = keypad.getKey();
   if (key) {
+    passInputDetect = true;
+    alarmOff();
     switch (key) {
       case 'D':
-        openDoor();
+        checkPassword();
         break;
       case 'C':
         clearPassword();
@@ -56,6 +67,8 @@ void matrixKeypad() {
       default:
         storePassword(key);
     }
+    passInputDelay = millis();
+    showPassword();
     Serial.println(key);
   }
 }
