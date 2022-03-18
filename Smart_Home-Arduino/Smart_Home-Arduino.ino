@@ -5,9 +5,9 @@
 #define DHTTYPE DHT11   // DHT 11
 DHT dht(DHTPIN, DHTTYPE);
 
-//smoke_sensor
+//gas_sensor
 int gasA0 = A2;
-int sensorThreshold = 200;
+int sensorThreshold = 300;
 
 //lcd_i2c_module
 #include <Wire.h>
@@ -20,7 +20,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 //Servo motor
 #include <Servo.h>
 Servo servo;
-#define doorCloseAngle 50
+#define doorCloseAngle 40
 #define doorOpenAngle 150
 int servoPin = A1;
 

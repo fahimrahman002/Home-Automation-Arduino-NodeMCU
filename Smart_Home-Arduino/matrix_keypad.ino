@@ -22,7 +22,7 @@ void checkPassword() {
   if (keyPressCount == 4) {
     for (int i = 0; i < 4; i++) {
       if (passwordInput[i] != password[i]) {
-        lcdPrint("Passowrd Input:","Wrong password");
+        lcdPrint("Passowrd Input:", "Wrong password");
         Serial.println("Wrong password");
         alarmOn();
         keyPressCount = 0;
@@ -33,9 +33,7 @@ void checkPassword() {
     passInputDetect = false;
     keyPressCount = 0;
   } else {
-    //    Serial.println(keyPressCount);
-    //    Serial.println();
-    lcdPrint("Passowrd Input:","Put 4 digit pass");
+    lcdPrint("Passowrd Input:", "Put 4 digit pass");
   }
 }
 
@@ -48,9 +46,10 @@ void showPassword() {
   lcd.clear();
   String password = "";
   for (int i = 0; i < keyPressCount; i++) {
-    password = password + passwordInput[i];
+    //    password = password + passwordInput[i];
+    password = password + "*";
   }
-  lcdPrint("Password Input:",password);
+  lcdPrint("Password Input:", password);
 }
 void matrixKeypad() {
   char key = keypad.getKey();

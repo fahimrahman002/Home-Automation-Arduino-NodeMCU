@@ -23,18 +23,20 @@ void printHumTemp() {
   if (millis() - humTempDelay >= 500) {
     float h = getHumidity();
     float t = getTempC();
-    String humidityText = (String)"Hum: " + h + "%";
-    String temperatureText = (String)"Temp: " + t + "C";
-    if (prevHum != h || prevTemp != t) {
-      lcdPrint(humidityText, temperatureText);
-      prevHum = h;
-      prevTemp = t;
+    if (h != -1 && t != -1) {
+      String humidityText = (String)"Hum: " + h + "%";
+      String temperatureText = (String)"Temp: " + t + "C";
+      if (prevHum != h || prevTemp != t) {
+        lcdPrint(humidityText, temperatureText);
+        prevHum = h;
+        prevTemp = t;
+      }
+      Serial.println(humidityText);
+      Serial.println(temperatureText);
     }
-    Serial.println(humidityText);
-    Serial.println(temperatureText);
     humTempDelay = millis();
   }
-  
+
 }
 // Check if any reads failed and exit early (to try again).
 bool checkSensor(float value) {
